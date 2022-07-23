@@ -2,7 +2,7 @@
 
 #### By _**Bri Chavez**_
 
-#### _{Brief description of application}_
+#### _This uses NLTK to train a program that will be able to take a job listing and pop out an almost workable resume_
 
 ## Technologies Used
 
@@ -13,7 +13,7 @@
 
 ## Description
 
-_This uses NLTK to train a program that will be able to take a job listing and pop out an almost workable resume_
+_so, we have a bunch of resume pdfs, wer are going to choose a subject to train on, run those through a nltk tokenizer thingy that i still have to figure out, and then run a job listing through the thingy and it will hopefully pop out a semi readable resume using cool words from our job listing. _
 
 ## Setup/Installation Requirements
 
