@@ -48,17 +48,28 @@ def extract_resumes():
 # runs the function to turn all pdfs in a stated folder into one giant pdf
 extract_resumes()
 
-def big_pdf2txt():
-    all_resumes_pdf = open(f'{folder_path}/{resume_folder}_resumes.pdf', mode='rb')
-    all_resumes_file = PyPDF2.PdfFileReader(all_resumes_pdf)
 
+"""function to change our newly made giant pdf into a txt file so we can play with it"""
+# let us begin the transformation process
+def big_pdf2txt():
+    # open up our new big ol pdf using the same folder variable as before
+    all_resumes_pdf = open(f'{folder_path}/{resume_folder}_resumes.pdf', mode='rb')
+    # use our reader to read our doc
+    all_resumes_file = PyPDF2.PdfFileReader(all_resumes_pdf)
+    # set an empty string to catch our page text
     text = ""
+    # run through and read each page in our pdf
     for pageNum in range(0, all_resumes_file.numPages):
+        # variable the page we are on
         page = all_resumes_file.getPage(pageNum)
+        # extract text from the page
         text += page.extract_text() + "\n"
+    # open a new txt file in our directory as a write   
     text_file = open(f'{folder_path}/{resume_folder}_resumes.txt', "w")
+    # write the text we collected from our pdf pages to the file
     text_file.write(text)
+    # our work here is done
     text_file.close()
 
-
+# call the function to transform a big pdf file into a txt file
 big_pdf2txt()
