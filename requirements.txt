@@ -1,0 +1,7 @@
+pandas
+PyPDF2
+numpy
+nltk
+matplotlib
+ipykernal
+aspose.words
