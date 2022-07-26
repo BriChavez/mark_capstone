@@ -5,3 +5,5 @@ nltk
 matplotlib
 ipykernal
 aspose.words
+pattern3
+gensim==3.4.0
