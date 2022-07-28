@@ -2,32 +2,25 @@ import language_tool_python
 import re
 import string
 import random
-import re
 import os
 from numpy.random import choice
 
 
-"""SET RESUME JOB TYPE YOU WOULD LIKE TO ACCESS"""
-# set variable to begin
-job_type = 'CONSTRUCTION'
-# set the folder path using our job type variable
-folder_path = f'data/Resume/{job_type}'
-# extract resume folder name, which is what our resume file is named for
-resume_folder = os.path.basename(folder_path).lower()
+"""LET'S GET STARTED"""
 
-
-# lets get started
-with open(f'{folder_path}/{resume_folder}_resumes.txt', 'r') as resume_script:
+# open our file
+with open('data/bri/data_stack_resumes.txt', 'r') as resume_script:
     # open txt file and read to string
     resume_file = resume_script.read()
     # lowercase everything in the string
     resume_file = resume_file.lower()
 
-# split file string and only keeps words, commas, and periods
-resume_string = re.findall(r"[A-Za-z]+|[.,]", resume_file)
-# add words to the get rid of pile
-more_drops = ['state', 'city', 'name', 'company', 'college']
-# go through our code and toss out the unwanteds
+# resume_string = re.findall(r"[A-Za-z]+|[.,]", resume_file)
+resume_string = re.findall(r"(\w+[']?\w)+|[A-Za-z]|[.,]", resume_file)
+# adds things to out list of unwanted words
+more_drops = ['state', 'city', 'name', 'company',
+              'college', 'am', 'the', 'to', 'in']
+# toss those words to the curbs
 stop_dropped_resume = [w for w in resume_string if not w in more_drops]
 
 
@@ -121,7 +114,7 @@ def whos_next():
 """ADD WORDS TO OUR STORY, DROP WHITE SPACE, CAPITALIZE, AND NEWLINE"""
 
 # while our story is less than this long
-while len(story) < 2000:
+while len(story) < 1000:
     # call our function
     whos_next()
 # set our full story to be
@@ -148,15 +141,21 @@ for x in range(4, len(splittext), random.randint(5, 8)):
     splittext[x] = "\n"+"\t"+splittext[x].lstrip()
 # throw it all back together into a string
 text = ".".join(splittext)
+# add a tab to the first line so it matches its friends
+text = f'\t'+text
+
 
 """"SPELL CHECK AND SAVE"""
 # set our spell check function to english and assign it to a variable
-tool = language_tool_python.LanguageTool('en-US')
-# set our checker to autocorrect
-checked_text = tool.correct(text)
+# tool = language_tool_python.LanguageTool('en-US')
+# # set our checker to autocorrect
+# checked_text = tool.correct(text)
 # open a new file in the generated resume folder
-text_file = open(f'finished_resumes/generated_{resume_folder}_resumes.txt', 'w')
+text_file = open(f'finished_resumes/generated_resumes2.txt', 'w')
 # write our resume to it
 text_file.write(text)
 # shut it down. our work here is done
 text_file.close()
+
+
+"""THE EDN"""
