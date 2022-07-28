@@ -1,18 +1,26 @@
-import json
+import language_tool_python
 import re
 import string
 import random
 import re
+import os
 from numpy.random import choice
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.corpus import stopwords
 
+
+"""SET RESUME JOB TYPE YOU WOULD LIKE TO ACCESS"""
+# set variable to begin
+job_type = 'CONSTRUCTION'
+# set the folder path using our job type variable
+folder_path = f'data/Resume/{job_type}'
+# extract resume folder name, which is what our resume file is named for
+resume_folder = os.path.basename(folder_path).lower()
 
 
 # lets get started
-with open('data/Resume/CHEF/chef_resumes.txt', 'r') as resume_script:
-    # open txt file and read to string, string to lower
+with open(f'{folder_path}/{resume_folder}_resumes.txt', 'r') as resume_script:
+    # open txt file and read to string
     resume_file = resume_script.read()
+    # lowercase everything in the string
     resume_file = resume_file.lower()
 
 # split file string and only keeps words, commas, and periods
@@ -66,22 +74,6 @@ if story == []:
     story.append(first_word)
 
 
-"""START THE STORY"""
-
-# starting out story off blank
-story = []
-# Pick the first word at random from our initial string
-first_word = random.choice(seuss_string)
-# while loop to make sure we dont start on punctuation
-while first_word in string.punctuation:
-    # if it was punctuation, choose again
-    first_word = random.choice(seuss_string)
-# if story is blank...
-if story == []:
-    # set story up with our first word
-    story.append(first_word)
-
-
 """CREATE THE WEIGHTED PROB ALGORITHM TO DETERMINE THE NEXT WORD"""
 
 # function to get the next word using weighted probability
@@ -129,7 +121,7 @@ def whos_next():
 """ADD WORDS TO OUR STORY, DROP WHITE SPACE, CAPITALIZE, AND NEWLINE"""
 
 # while our story is less than this long
-while len(story) < 600:
+while len(story) < 2000:
     # call our function
     whos_next()
 # set our full story to be
@@ -151,9 +143,20 @@ cap_sent = ' '.join(cap_sent)
 # back to splitting our text on periods
 splittext = cap_sent.split(".")
 # for every 5 to 10 sentences...
-for x in range(5, len(splittext), random.randint(5, 10)):
+for x in range(4, len(splittext), random.randint(5, 8)):
     # add a new line and start the next sentence tabbed in
     splittext[x] = "\n"+"\t"+splittext[x].lstrip()
 # throw it all back together into a string
 text = ".".join(splittext)
 
+""""SPELL CHECK AND SAVE"""
+# set our spell check function to english and assign it to a variable
+tool = language_tool_python.LanguageTool('en-US')
+# set our checker to autocorrect
+checked_text = tool.correct(text)
+# open a new file in the generated resume folder
+text_file = open(f'finished_resumes/generated_{resume_folder}_resumes.txt', 'w')
+# write our resume to it
+text_file.write(text)
+# shut it down. our work here is done
+text_file.close()
