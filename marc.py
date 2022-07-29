@@ -158,4 +158,4 @@ text_file.write(text)
 text_file.close()
 
 
-"""THE EDN"""
+"""THE END"""
