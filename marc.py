@@ -2,7 +2,6 @@ import language_tool_python
 import re
 import string
 import random
-import os
 from numpy.random import choice
 
 
@@ -15,8 +14,8 @@ with open('data/bri/data_stack_resumes.txt', 'r') as resume_script:
     # lowercase everything in the string
     resume_file = resume_file.lower()
 
-# resume_string = re.findall(r"[A-Za-z]+|[.,]", resume_file)
-resume_string = re.findall(r"(\w+[']?\w)+|[A-Za-z]|[.,]", resume_file)
+# regex to keep only punctuation or words more than two letters long, may or may not contain an apostrophe in the middle
+resume_string = re.findall(r"[.,]|[a-z]+[']?[a-z]+", resume_file)
 # adds things to out list of unwanted words
 more_drops = ['state', 'city', 'name', 'company',
               'college', 'am', 'the', 'to', 'in']
@@ -31,7 +30,7 @@ resume_dict = {}
 for i, word in enumerate(stop_dropped_resume[:-1]):
     # setting this word to be the word right after the one we were on
     this_word = stop_dropped_resume[i+1]
-    # if this_word isnt in our dictionary already...
+    # if this_word isn't in our dictionary already...
     if this_word not in resume_dict:
         # start our counter dict
         next_count = {}
@@ -113,17 +112,21 @@ def whos_next():
 
 """ADD WORDS TO OUR STORY, DROP WHITE SPACE, CAPITALIZE, AND NEWLINE"""
 
+# -----ADD WORDS-------
 # while our story is less than this long
-while len(story) < 1000:
+while len(story) < 400:
     # call our function
     whos_next()
 # set our full story to be
 whole_story = ' '.join(story)
+# apparently, the code like to run forever unless we put a print function here
+print(whole_story)
+
+# ------REMOVE WHITESPACE AND CAPITALIZE FIRST WORD OF SENTENCES------
 # replace white space preceding punctuation
 whole_story = re.sub(r'\s([?.,!](?:\s|$))', r'\1', whole_story)
-# resplit the story, this time on sentences
+# re split the story, this time on sentences
 sentences = re.split('[?.]', whole_story)
-
 # set a new clean variable
 cap_sent = []
 # for every sentense in our story...
@@ -133,6 +136,7 @@ for sentence in sentences:
 # turn our story back into a string by joining them back in together
 cap_sent = ' '.join(cap_sent)
 
+# -------ADD NEWLINES AND BEGINNING OF PARAGRAPH TABS------
 # back to splitting our text on periods
 splittext = cap_sent.split(".")
 # for every 5 to 10 sentences...
@@ -144,14 +148,13 @@ text = ".".join(splittext)
 # add a tab to the first line so it matches its friends
 text = f'\t'+text
 
-
-""""SPELL CHECK AND SAVE"""
+# -------SPELL CHECK AND SAVE------
 # set our spell check function to english and assign it to a variable
-# tool = language_tool_python.LanguageTool('en-US')
-# # set our checker to autocorrect
-# checked_text = tool.correct(text)
+tool = language_tool_python.LanguageTool('en-US')
+# set our checker to auto correct
+checked_text = tool.correct(text)
 # open a new file in the generated resume folder
-text_file = open(f'finished_resumes/generated_resumes2.txt', 'w')
+text_file = open(f'finished_resumes/generated_resumes.txt', 'w')
 # write our resume to it
 text_file.write(text)
 # shut it down. our work here is done
