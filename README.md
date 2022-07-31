@@ -1,3 +1,6 @@
+
+<p><img src="finished_resumes/dsa_resume_wordcloud.png" alt="word cloud image"/></p>
+
 # _Resume Writer_
 
 #### By _**Bri Chavez**_

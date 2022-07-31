@@ -61,8 +61,8 @@ for word in stop_dropped_resume:
 resume_dict = {}
 # for loop that runs over every word in our string, but stating to stop at the last word
 for i, word in enumerate(expanded_words[:-1]):
-    # setting this word to be the word right after the one we were on
-    this_word = expanded_words[i+1]
+    # setting this word to be the word right before marc.py
+    this_word = expanded_words[i-1]
     # if this_word isn't in our dictionary already...
     if this_word not in resume_dict:
         # start our counter dict
