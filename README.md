@@ -5,9 +5,9 @@
 
 #### By _**Bri Chavez**_
 
-#### _The Markov principle involves defining the likelihood of a future action based soley off current state of a variable. Once the probabilities of future actions at each state are determined, a nested dictionary can be created, and the likelihood of a result can be calculated. Markov models can be used to recognize patterns, make predictions and to learn the statistics of sequential data. Applications include modeling languages, natural language processing, image processing, Bioinformatics, speech recognition, and modeling computer hardware and software systems. _
+#### _The Markov principle involves defining the likelihood of a future action based soley off current state of a variable. Once the probabilities of future actions at each state are determined, a nested dictionary can be created, and the likelihood of a result can be calculated. Markov models can be used to recognize patterns, make predictions and to learn the statistics of sequential data. Applications include modeling languages, natural language processing, image processing, Bioinformatics, speech recognition, and modeling computer hardware and software systems._
 
-
+<p><img src="finished_resumes/finished_resumes/mark.jpg" alt="markov diagram image"/></p>
 
 ## Description
 
