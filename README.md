@@ -7,12 +7,10 @@
 
 #### _The Markov principle involves defining the likelihood of a future action based soley off current state of a variable. Once the probabilities of future actions at each state are determined, a nested dictionary can be created, and the likelihood of a result can be calculated. Markov models can be used to recognize patterns, make predictions and to learn the statistics of sequential data. Applications include modeling languages, natural language processing, image processing, Bioinformatics, speech recognition, and modeling computer hardware and software systems._
 
-<<<<<<< HEAD
 
 ![markov diagram image](finished_resumes/mark.jpg)
-=======
-<p><img src="finished_resumes/mark.jpg" alt="markov diagram image"/></p>
->>>>>>> bf6ffa0973c2c0331433cb640ea9a59b8c02bfee
+
+
 
 ## Description
 
@@ -35,15 +33,17 @@ _This program runs through each word in a give text, lower cases them all, drops
 
 ## More about Markov
 
+* _If you want to know more about markov chains, this website is really neat and has moving graphs and everything._
+[Link to an awesome website](https://setosa.io/ev/markov-chains/ "Click to learn more about markov chains")
 
 
 
 ## Known Bugs
 
-* _Just starting out so its not really working_
+* _Most of the time it executes flawlessly, but everyonce in a while the while loop just keeps running and i am not sure why_
 
 ## License
 
-_If you'd to discuss any of my code or are wondering more detailed instructions on the training in different fields, feel free to email me at brianachavez@gmail.com_
+_If you'd to use my code and want to learn more or find out how else you can apply this, feel free to email me at brianachavez@gmail.com. Also, check out my repo for my markov dedicated to dr seuss. More to come_
 
 Copyright (c) _July 2022_ _Bri Chavez_
